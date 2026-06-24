@@ -47,8 +47,14 @@ function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
 
   return (
     <div className="flex flex-col h-full bg-[#0f1623] text-white">
-      <div className="px-5 py-6">
-        <h2 className="text-lg font-bold tracking-tight">Acowale CRM</h2>
+      <div className="px-5 py-6 flex items-center gap-2.5">
+        <svg className="h-7 w-7 flex-shrink-0" viewBox="0 0 512 512" fill="none">
+          <path d="M512 256C512 114.615 397.385 0 256 0C114.615 0 0 114.615 0 256C0 397.385 114.615 512 256 512C397.385 512 512 397.385 512 256Z" fill="#0795FF"/>
+          <path d="M290.417 340.78C290.417 312.97 312.961 290.426 340.771 290.426C368.57 290.426 391.108 312.953 391.125 340.748V340.78V340.81C391.109 368.606 368.571 391.134 340.771 391.134C328.903 391.134 317.994 387.029 309.387 380.16C297.825 370.934 290.417 356.722 290.417 340.78Z" fill="white"/>
+          <path d="M290.417 255.98L391.124 255.991L391.125 340.746V340.808V341.391H290.417V310.392V255.98Z" fill="white"/>
+          <path fillRule="evenodd" clipRule="evenodd" d="M255.999 391.116C272.453 391.116 288.22 388.175 302.803 382.79C289.352 373.881 280.425 358.685 280.218 341.392V340.779V280.081C273.869 286.464 265.078 290.414 255.364 290.414C236.003 290.414 220.308 274.719 220.308 255.358C220.308 235.996 236.003 220.301 255.364 220.301C274.726 220.301 290.421 235.996 290.421 255.358C290.421 257.24 290.273 259.088 289.987 260.89C290.242 259.288 290.387 257.648 290.417 255.981V310.393V340.779V341.392C290.604 357.085 297.974 371.051 309.387 380.159C317.994 387.028 328.903 391.133 340.771 391.133C368.376 391.133 390.797 368.919 391.125 341.392V340.809V340.779V340.747L391.124 255.992C391.124 181.364 330.626 120.867 255.999 120.867C181.372 120.867 120.875 181.364 120.875 255.992C120.875 330.619 181.372 391.116 255.999 391.116Z" fill="white"/>
+        </svg>
+        <span className="text-lg font-bold text-white tracking-tight">Acowale CRM</span>
       </div>
 
       <nav className="flex-1 px-3 space-y-1">
@@ -75,16 +81,15 @@ function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
       </nav>
 
       <div className="px-3 pb-4 mt-auto">
-        <Link
-          href="#"
-          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-gray-200 transition-all"
+        <button
+          onClick={() => signOut({ callbackUrl: "/login" })}
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-gray-200 transition-all"
         >
           <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
           </svg>
-          Settings
-        </Link>
+          Sign Out
+        </button>
       </div>
     </div>
   );
