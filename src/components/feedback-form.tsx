@@ -97,50 +97,52 @@ export function FeedbackForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="space-y-1.5">
-        <Label htmlFor="name" className="text-sm font-medium text-gray-700">Customer Name</Label>
-        <Input
-          id="name"
-          name="name"
-          placeholder="Enter customer name"
-          required
-          minLength={2}
-          maxLength={100}
-          className="h-10"
-        />
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="space-y-1.5">
+          <Label htmlFor="name" className="text-sm font-medium text-gray-700">Customer Name</Label>
+          <Input
+            id="name"
+            name="name"
+            placeholder="Enter your name"
+            required
+            minLength={2}
+            maxLength={100}
+            className="h-10"
+          />
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor="category" className="text-sm font-medium text-gray-700">Category</Label>
+          <Select name="category" required>
+            <SelectTrigger className="h-10">
+              <SelectValue placeholder="Select a category" />
+            </SelectTrigger>
+            <SelectContent>
+              {categories.map((cat) => (
+                <SelectItem key={cat.value} value={cat.value}>
+                  {cat.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       <div className="space-y-1.5">
-        <Label htmlFor="category" className="text-sm font-medium text-gray-700">Category</Label>
-        <Select name="category" required>
-          <SelectTrigger className="h-10">
-            <SelectValue placeholder="Select a category" />
-          </SelectTrigger>
-          <SelectContent>
-            {categories.map((cat) => (
-              <SelectItem key={cat.value} value={cat.value}>
-                {cat.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div className="space-y-1.5">
-        <Label htmlFor="message" className="text-sm font-medium text-gray-700">Feedback</Label>
+        <Label htmlFor="message" className="text-sm font-medium text-gray-700">Your Feedback</Label>
         <Textarea
           id="message"
           name="message"
-          placeholder="Describe the feedback in detail..."
+          placeholder="Share your thoughts, suggestions, or ideas..."
           required
           minLength={10}
           maxLength={1000}
-          rows={4}
+          rows={5}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className="resize-none"
         />
-        <p className="text-xs text-gray-400 text-right">{message.length}/1000</p>
+        <p className="text-xs text-gray-400 text-right">{message.length}/1,000</p>
       </div>
 
       <div className="space-y-1.5">
@@ -154,23 +156,13 @@ export function FeedbackForm() {
         />
       </div>
 
-      <div className="flex items-center gap-3 pt-2">
-        <Button
-          type="button"
-          variant="outline"
-          className="flex-1"
-          onClick={() => setMessage("")}
-        >
-          Cancel
-        </Button>
-        <Button
-          type="submit"
-          className="flex-1 bg-[#0f1623] hover:bg-[#1a2436] text-white"
-          disabled={loading}
-        >
-          {loading ? "Submitting..." : "Submit Feedback"}
-        </Button>
-      </div>
+      <Button
+        type="submit"
+        className="w-full h-11 bg-[#0f1623] hover:bg-[#1a2436] text-white font-medium"
+        disabled={loading}
+      >
+        {loading ? "Submitting..." : "Submit Feedback"}
+      </Button>
     </form>
   );
 }
