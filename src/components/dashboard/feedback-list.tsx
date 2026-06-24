@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -37,6 +38,12 @@ const sentimentColors: Record<string, string> = {
   negative: "bg-red-50 text-red-700 border-red-200",
 };
 
+const sentimentEmojis: Record<string, string> = {
+  positive: "😊",
+  neutral: "😐",
+  negative: "😞",
+};
+
 const statusColors: Record<string, string> = {
   NEW: "bg-blue-50 text-blue-700 border-blue-200",
   IN_PROGRESS: "bg-amber-50 text-amber-700 border-amber-200",
@@ -52,10 +59,12 @@ const statusLabels: Record<string, string> = {
 };
 
 export function FeedbackList() {
+  const searchParams = useSearchParams();
+  const initialSearch = searchParams.get("search") || "";
   const [data, setData] = useState<Feedback[]>([]);
   const [pagination, setPagination] = useState<Pagination>({ total: 0, page: 1, limit: 8, totalPages: 0 });
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(initialSearch);
   const [category, setCategory] = useState("all");
   const [sentiment, setSentiment] = useState("all");
   const [page, setPage] = useState(1);
@@ -101,10 +110,9 @@ export function FeedbackList() {
       <div className="flex flex-wrap items-center gap-3">
         <Input
           placeholder="Search feedback..."
-          className="w-full sm:w-56 h-9"
+          className="w-full sm:w-64 h-9"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          onKeyDown={(e) => { if (e.key === "Enter") setPage(1); }}
+          onChange={(e) => { setSearch(e.target.value); setPage(1); }}
         />
         <div className="flex gap-2">
           <button
@@ -194,8 +202,8 @@ export function FeedbackList() {
                     </td>
                     <td className="px-4 py-3.5">
                       {item.sentiment && (
-                        <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border ${sentimentColors[item.sentiment]}`}>
-                          {item.sentiment.charAt(0).toUpperCase() + item.sentiment.slice(1)}
+                        <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium border ${sentimentColors[item.sentiment]}`}>
+                          {sentimentEmojis[item.sentiment]} {item.sentiment.charAt(0).toUpperCase() + item.sentiment.slice(1)}
                         </span>
                       )}
                     </td>

@@ -58,8 +58,8 @@ export default function Home() {
       </div>
 
       <footer className="px-6 sm:px-10 py-5 flex items-center justify-between">
-        <p className="text-xs text-gray-600">Built by Abhi for Acowale Technologies</p>
-        <p className="text-xs text-gray-600">Machine Test 2024</p>
+        <p className="text-xs text-gray-600">Built by Tejassri Avinasha for Acowale Technologies</p>
+        <p className="text-xs text-gray-600">Machine Test 2026</p>
       </footer>
     </main>
   );

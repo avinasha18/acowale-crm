@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -98,7 +98,9 @@ export function DashboardShell({
   user: { name?: string | null; email?: string | null };
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const pathname = usePathname();
+  const router = useRouter();
   const initials = user.name
     ? user.name.split(" ").map((n) => n[0]).join("").toUpperCase()
     : "AU";
@@ -132,16 +134,26 @@ export function DashboardShell({
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="hidden sm:block relative">
+            <form
+              className="hidden sm:block relative"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (searchQuery.trim()) {
+                  router.push(`/dashboard/feedback?search=${encodeURIComponent(searchQuery.trim())}`);
+                }
+              }}
+            >
               <svg className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               <input
                 type="text"
-                placeholder="Search feedback, users, sources..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search feedback..."
                 className="h-9 w-64 rounded-lg border border-gray-200 bg-gray-50 pl-9 pr-3 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-gray-400 focus:ring-2 focus:ring-gray-100 focus:bg-white"
               />
-            </div>
+            </form>
             <DropdownMenu>
               <DropdownMenuTrigger className="inline-flex items-center justify-center rounded-full h-9 w-9 hover:bg-gray-100">
                 <Avatar className="h-8 w-8">

@@ -1,8 +1,8 @@
-# Acowale CRM Machine Test by Abhi
+# Acowale CRM Machine Test by Tejassri Avinasha
 
 A production-ready customer feedback platform with AI-powered sentiment analysis, built for the Acowale engineering challenge.
 
-**Live Demo:** [Deployment URL]  
+**Live Demo:** [https://acowale-crm-red.vercel.app](https://acowale-crm-red.vercel.app)  
 **Decision Log:** [DECISIONS.md](./DECISIONS.md)  
 **Teaching Document:** [TEACH_US.md](./TEACH_US.md)
 
@@ -14,7 +14,7 @@ A production-ready customer feedback platform with AI-powered sentiment analysis
 - **AI Sentiment Analysis** — every submission is automatically classified as positive, neutral, or negative
 - **Admin Dashboard** — KPI cards, category donut chart, trend area chart, sentiment bar chart
 - **Filtering & Search** — filter by category, status, sentiment, or full-text search
-- **Authentication** — Google OAuth + credential-based login for admin access
+- **Authentication** — credential-based login for admin access with JWT sessions
 - **Rate Limiting** — sliding window algorithm via Upstash Redis (5 req/min per IP)
 - **Dark/Light Theme** — system-aware with manual toggle
 - **Mobile Responsive** — works on all screen sizes

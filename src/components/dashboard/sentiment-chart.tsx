@@ -9,9 +9,9 @@ interface SentimentData {
 export function SentimentChart({ data }: { data: SentimentData }) {
   const total = data.positive + data.neutral + data.negative;
   const items = [
-    { label: "Positive", value: data.positive, color: "bg-emerald-500" },
-    { label: "Neutral", value: data.neutral, color: "bg-gray-400" },
-    { label: "Negative", value: data.negative, color: "bg-red-500" },
+    { label: "Positive", emoji: "😊", value: data.positive, color: "bg-emerald-500" },
+    { label: "Neutral", emoji: "😐", value: data.neutral, color: "bg-gray-400" },
+    { label: "Negative", emoji: "😞", value: data.negative, color: "bg-red-500" },
   ];
 
   return (
@@ -23,7 +23,7 @@ export function SentimentChart({ data }: { data: SentimentData }) {
           return (
             <div key={item.label} className="space-y-1.5">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-600">{item.label}</span>
+                <span className="text-gray-600">{item.emoji} {item.label}</span>
                 <span className="text-gray-500 text-xs">{pct}%</span>
               </div>
               <div className="h-2 rounded-full bg-gray-100 overflow-hidden">
@@ -40,7 +40,7 @@ export function SentimentChart({ data }: { data: SentimentData }) {
         {items.map((item) => (
           <div key={item.label} className="flex items-center gap-1.5">
             <div className={`w-2 h-2 rounded-full ${item.color}`} />
-            {item.label} {total > 0 ? Math.round((item.value / total) * 100) : 0}%
+            {item.emoji} {item.label} {total > 0 ? Math.round((item.value / total) * 100) : 0}%
           </div>
         ))}
       </div>
