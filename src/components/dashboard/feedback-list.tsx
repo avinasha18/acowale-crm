@@ -60,15 +60,20 @@ const statusLabels: Record<string, string> = {
 
 export function FeedbackList() {
   const searchParams = useSearchParams();
-  const initialSearch = searchParams.get("search") || "";
+  const urlSearch = searchParams.get("search") || "";
   const [data, setData] = useState<Feedback[]>([]);
   const [pagination, setPagination] = useState<Pagination>({ total: 0, page: 1, limit: 8, totalPages: 0 });
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState(initialSearch);
+  const [search, setSearch] = useState(urlSearch);
   const [category, setCategory] = useState("all");
   const [sentiment, setSentiment] = useState("all");
   const [page, setPage] = useState(1);
   const abortRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    setSearch(urlSearch);
+    setPage(1);
+  }, [urlSearch]);
 
   useEffect(() => {
     abortRef.current?.abort();
