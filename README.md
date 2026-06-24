@@ -2,7 +2,7 @@
 
 A production-ready customer feedback platform with AI-powered sentiment analysis, built for the Acowale engineering challenge.
 
-**Live Demo:** [https://acowale-crm-red.vercel.app](https://acowale-crm-red.vercel.app)  
+**Live Demo:** [https://acowalecrm.vercel.app](https://acowalecrm.vercel.app)  
 **Decision Log:** [DECISIONS.md](./DECISIONS.md)  
 **Teaching Document:** [TEACH_US.md](./TEACH_US.md)
 
